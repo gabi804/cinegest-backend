@@ -11,21 +11,33 @@ export enum ReservationStatus {
 @Entity()
 export class Reservation {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'userId' })
-  user: User;
+  user!: User;
 
   @ManyToOne(() => FunctionEntity)
   @JoinColumn({ name: 'functionId' })
-  function: FunctionEntity;
+  function!: FunctionEntity;
 
   @Column()
-  seats: number; //asientos
+  seats!: number; //asientos
+
+  @Column({ nullable: true })
+  functionDate!: string;
+
+  @Column({ nullable: true })
+  functionTime!: string;
+
+  @Column('decimal', { nullable: true })
+  functionPrice!: number;
 
   @Column({ type: 'enum', enum: ReservationStatus, default: ReservationStatus.PENDING })
-  status: ReservationStatus; //estado
+  status!: ReservationStatus; //estado
+
+  @Column({ default: true })
+  active!: boolean;
 }
 
 

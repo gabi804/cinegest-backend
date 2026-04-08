@@ -1,13 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, ILike } from 'typeorm';
 import { User } from './users.entity';
 
 @Injectable()
 export class UsersService {
   constructor(@InjectRepository(User) private repo: Repository<User>) {}
 
-  findAll() {
+  findAll(q?: string) {
+    if (q) {
+      // search by name, email or dni
+      return this.repo.find({ where: [ { name: ILike(`%${q}%`) }, { email: ILike(`%${q}%`) }, { dni: ILike(`%${q}%`) } ] });
+    }
     return this.repo.find();
   }
 
@@ -29,7 +33,8 @@ export class UsersService {
   }
 
   remove(id: number) {
-    return this.repo.delete(id);
+    // soft-delete
+    return this.repo.update(id, { active: false } as any);
   }
 }
 

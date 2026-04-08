@@ -5,9 +5,11 @@ import { ReservationsController } from './reservations.controller';
 import { Reservation } from './reservations.entity';
 import { User } from '../users/users.entity';
 import { FunctionEntity } from '../functions/functions.entity';
+import { Room } from '../rooms/rooms.entity';
+import { Movie } from '../movies/movies.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Reservation, User, FunctionEntity])],
+  imports: [TypeOrmModule.forFeature([Reservation, User, FunctionEntity, Room, Movie])],
   controllers: [ReservationsController],
   providers: [ReservationsService],
 })

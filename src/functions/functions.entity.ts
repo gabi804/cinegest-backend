@@ -5,27 +5,26 @@ import { Room } from '../rooms/rooms.entity';
 @Entity()
 export class FunctionEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @ManyToOne(() => Movie)
   @JoinColumn({ name: 'movieId' })
-  movie: Movie;
+  movie!: Movie;
 
   @ManyToOne(() => Room)
   @JoinColumn({ name: 'roomId' })
-  room: Room;
+  room!: Room;
 
   @Column()
-  date: string; //fecha
+  date!: string; //fecha
 
   @Column()
-  time: string;
+  time!: string;
 
   @Column('decimal')
-  price: number;
-
-  @Column()
-  availableSeats: number; //Asientos disponibles
+  price!: number;
+  @Column({ default: true })
+  active!: boolean;
 }
 
 

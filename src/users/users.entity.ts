@@ -4,13 +4,19 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column({ unique: true })
-  email: string;
+  email!: string;
+
+  @Column({ nullable: true, unique: true })
+  dni!: string;
+
+  @Column({ default: true })
+  active!: boolean;
 
  
 }

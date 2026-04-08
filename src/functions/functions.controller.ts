@@ -16,6 +16,11 @@ export class FunctionsController {
     return this.functionsService.findOne(+id);
   }
 
+  @Get(':id/availability')
+  availability(@Param('id') id: string) {
+    return this.functionsService.getAvailability(+id);
+  }
+
   @Post()
   create(@Body() func: Partial<FunctionEntity>) {
     return this.functionsService.create(func);

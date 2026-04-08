@@ -26,7 +26,8 @@ export class MoviesService {
   }
 
   remove(id: number) {
-    return this.repo.delete(id);
+    
+    return this.repo.update(id, { active: false } as any);
   }
 }
 

@@ -9,15 +9,15 @@ export enum RoomType {
 @Entity()
 export class Room {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column()
-  capacity: number;
+  capacity!: number;
 
   @Column({ type: 'enum', enum: RoomType })
-  type: RoomType;
+  type!: RoomType;
 }
 
